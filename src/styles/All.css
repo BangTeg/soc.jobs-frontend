@@ -127,10 +127,10 @@
 
 /* Full Time jobs Type */
 .fullTimeJobsType{
-        height: 100vh;
+        height: 150vh;
         /* background: #D7F5DC; */
         background-size: cover;
         background: #111215;
-        position: relative;
+
 }
 

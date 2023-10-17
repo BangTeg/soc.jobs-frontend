@@ -3,22 +3,13 @@ import "../styles/All.css";
 import { Box, Button, Flex, Link, Img, useToast} from "@chakra-ui/react";
 import logo from "../assets/logo.png";
 import { useState } from 'react';
-import { useNavigate } from "react-router-dom";
-import loadingScreen from "./LoadingScreen";
+import { useNavigate } from "react-router-dom";;
 
 const NavBar = () => {
     const navigate = useNavigate();
     const toast = useToast();
-    const [isLogged, setIsLogged] = useState(localStorage.getItem('access_token') ? true : false)
+    const [isLogged, setIsLogged] = useState(localStorage.getItem('access_token') ? true : false);
 
-    const handleNavbar = () => {
-    if (!localStorage.getItem("access_token")) {
-        return setLoading(false);
-    }
-    else if (localStorage.getItem("access_token")) {      
-        return setLoading(true);
-    } 
-    }   
 
     const handleLogout = () => {
         //hapus token akses dari localstorage
@@ -36,7 +27,7 @@ const NavBar = () => {
             position: 'top', 
         });
 
-        {loadingScreen}
+        
     }
 
     return (
@@ -76,6 +67,9 @@ const NavBar = () => {
             </Box>
             <Spacer/>
             <Box display="flex" justifyContent="space-between" gap="20px" alignContent="flex-end" paddingRight="20px">
+                <Link color="white" href="/aboutus">
+                    Dashboard
+                </Link>
                 <Link color="white" href="/aboutus">
                     About Us
                 </Link>

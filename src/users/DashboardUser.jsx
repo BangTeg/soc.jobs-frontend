@@ -3,6 +3,7 @@ import { Card, Flex, Center, CardBody, Text, CardHeader,
     Heading, CardFooter, Button, Image, Box, Link } from "@chakra-ui/react";
 import Navbar  from "../components/Navbar";
 import Footer  from "../components/Footer";
+import NotFound  from "../auth/NotFound";
 import "../styles/All.css";
 import jobs from "../assets/jobs.png";
 import soc_software_house from "../assets/soc-software-house.png";
@@ -19,8 +20,13 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const DashboardUser = () => {
-    //get accces token
-    const accessToken = localStorage.getItem("access_token");
+    // //get accces token
+    // const accessToken = token;
+    // localStorage.setItem("access_token", accessToken);
+    // //Jika akses token tidak tersedia menampilkan komponen not found
+    // if (!accessToken) {
+    //     return <NotFound />
+    // }
 
     //slider pcture logo division soc 
     const settings = {
