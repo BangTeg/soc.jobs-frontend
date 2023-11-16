@@ -1,5 +1,5 @@
 import Navbar  from "../components/Navbar";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Footer  from "../components/Footer";
 import "../styles/All.css";
 import { Image, Flex, Button, Box, Select, Text, Card, CardBody, CardHeader, CardFooter, Link } from "@chakra-ui/react";
@@ -16,6 +16,9 @@ const FullTime = () => {
     
     // State filter by positions
     const [selectedPosition, setSelectedPosition] = useState("");
+
+    //set for show 
+    const[visibleJobs, setVisibleJobs] = useState(0);
 
     // Array Of Objects Job Data For Mapping
     const jobData = [
@@ -61,11 +64,30 @@ const FullTime = () => {
         },
     ];
 
+    // effect hook for display one by one 
+    useEffect(() => {
+      const interval = setInterval(() => {
+        // add job to display one by one 
+        if (visibleJobs < jobData.length) {
+            setVisibleJobs((prevVisibleJobs) => prevVisibleJobs + 1)
+        }
+      }, 1000);
+    
+      return () => clearInterval(interval); 
+    }, [jobData]);
+    
+
     // Mapping Job Data And return to Element
     const jobElements = jobData.map((job, index) => (
-        <Box key={index} width="40%" height="100%" marginLeft={index % 2 === 0 ? "5%" : "55%"}>
+        <Box key={index} width="40%" height="100%" marginLeft={index % 2 === 0 ? "5%" : "55%"} 
+        _hover={{transform: "scale(1.05)", transition: "transform 0.3s ease",}}
+        style={{
+            display: "block",
+            opacity: index < visibleJobs ? 1 : 0, // Mengatur opacity elemen
+            transition: "opacity 0.5s", // Menggunakan transition untuk mengatur efek muncul secara halus
+          }}>
             <Card bg="none" variant="outline" borderRadius="15px">
-            <Image src={job.img} alt={job.title} borderTopRadius="15px"></Image>
+            <Image src={job.img} alt={job.title} borderTopRadius="15px" _hover={{ filter: "brightness(1.5)" }}></Image>
                 <CardHeader textAlign="center" fontSize="xl" fontWeight="semibold" textColor="white"> 
                     {job.title}
                 </CardHeader>
@@ -114,7 +136,7 @@ const FullTime = () => {
                         selectedPosition === job.title && (
                             <Box key={index} width="40%" height="100%" marginLeft="5%"> 
                                 <Card bg="none" variant="outline" borderRadius="15px">
-                                    <Image src={job.img} alt={job.title} borderTopRadius="15px"></Image>
+                                    <Image src={job.img} alt={job.title} borderTopRadius="15px" _hover={{ filter: "brightness(1.5)" }}></Image>
                                         <CardHeader textAlign="center" fontSize="xl" fontWeight="semibold" textColor="white">
                                             {job.title}
                                         </CardHeader>  

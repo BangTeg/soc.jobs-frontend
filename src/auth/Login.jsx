@@ -1,22 +1,30 @@
 import React from "react";
 import { useState } from "react";
-import { useToast, Link, Spacer, Heading, Box, Table, Img, Text, Flex, Button, Input, InputRightAddon, InputGroup  } from "@chakra-ui/react";
+import { useDisclosure, useToast, Link, Spacer, Heading, Box, Table, Img, Text, Flex, Button, Input, InputRightAddon, InputGroup, ModalOverlay, Modal, ModalContent, ModalCloseButton, ModalBody, ModalFooter, ModalHeader } from "@chakra-ui/react";
 import logo from "../assets/logo.png";
 import google from "../assets/google.png";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Login = () => {
 
-const [show, setShow] =  React.useState(false)
-const handleClick = () => setShow(!show)
+//show and hide password 
+    const [show, setShow] =  React.useState(false)
+    const handleClick = () => setShow(!show)
 
 // proses login untuk mendapatkan token dan menyimpan pada local
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [alertVisible, setAlertVisible] = useState(false);
-    const [alertMessage, setAlertMessage] = useState("");
     const navigate = useNavigate();
     const toast = useToast();
+
+    //overlay on if forgot password onClick
+    const OverlayModal = () => (
+        <ModalOverlay bg='blackAlpha.300'
+        backdropFilter='blur(10px) hue-rotate(90deg)'/>
+    )
+    const { isOpen, onOpen, onClose } = useDisclosure()
+    const [overlay, setOverlay] = React.useState(<OverlayModal />)
 
     const handleLogin = async (e) => {
         try {
@@ -37,33 +45,46 @@ const handleClick = () => setShow(!show)
             if (response.ok) {
                 const data = await response.json();
                 const accessToken = data.token;
+                const userRole = data.role;
 
                 // Simpan access token di local storage
                 localStorage.setItem("access_token", accessToken);
 
-                // mengarahkan pengguna ke dashbord 
-                navigate("/userHome");
-                console.log(data);
+                //conditional for admin and user 
+                if (userRole === "Admin") {
+                    setTimeout(() => {
+                        window.location.href="/backoffice/dashboard";
+                    }, 1500);
+                    
+                     //alert on tampilan
+                     toast({
+                        title: 'Login Success', 
+                        description: 'Welcome Admin',
+                        status: 'success',
+                        duration: 2000,
+                        isClosable: true,
+                        position: 'top', 
+                    })
+                }
+                else{
+                    setTimeout(() => {
+                        window.location.href="/userHome";
+                    }, 1500);
 
-                //menampilkan allert login success
-                setAlertVisible(true);
-                setAlertMessage("Login Berhasil!");
+                    //alert on tampilan
+                    toast({
+                        title: 'Login Success', 
+                        description: 'Happy Apply!',
+                        status: 'success',
+                        duration: 2000,
+                        isClosable: true,
+                        position: 'top', 
+                    })
+                }
 
-                //alert on tampilan
-                toast({
-                    title: 'Login Success', 
-                    description: 'Happy Apply!',
-                    status: 'success',
-                    duration: 2000,
-                    isClosable: true,
-                    position: 'top', 
-                })
+                
             } else {
                 console.error("Login failed");
-
-                //menampilkan allert login gagal
-                setAlertVisible(true);
-                setAlertMessage("Login Gagal, Periksakembali email dan password Anda!");
 
                 //menampilkan alert pada tampilan
                 toast({
@@ -79,6 +100,39 @@ const handleClick = () => setShow(!show)
         } catch (error) {
             console.error(error);            
         }
+    };
+
+    const handleForgotPassword = async(e) => {
+        if (e) {
+            e.preventDefault();
+        }
+        
+        //post data to api and get email
+
+        try {
+            await axios.post('https://50cglb1j-4000.asse.devtunnels.ms/auth/reset',{
+                email: email,
+            });
+
+            //menampilkan alert berhasil pada tampilan
+            toast({
+                title: 'Email send', 
+                description: 'Please Check Your Email Box to Verify',
+                status: 'success',
+                duration: 4000,
+                isClosable: true,
+                position: 'top', 
+            });
+
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const handleGoogleLogin = () => {
+        // Redirect the user to the Google OAuth route on your Node.js backend
+         window.location.href = 'https://50cglb1j-4000.asse.devtunnels.ms/auth/google';
+
     };
 
     return (
@@ -128,12 +182,18 @@ const handleClick = () => setShow(!show)
                     </form>
                 </Box>
 
+                <Box padding="4px" paddingRight="87px" marginTop='-18px'>
+                    <Link textColor="red.500" fontSize="sm" onClick={() => {
+                        onOpen()
+                        }}>Forgot password? </Link>
+                </Box>
+
                 <Box padding="4px" paddingRight="125px">
                     <Text textColor="white" fontSize="lg"> Atau </Text>
                 </Box>
 
                 <Box paddingRight="45px">
-                    <Button>
+                    <Button onClick={handleGoogleLogin}>
                         <Img src={google} borderRadius="10px" w="30px" h="30px"></Img> Log In with Google
                     </Button>
                 </Box>
@@ -144,6 +204,25 @@ const handleClick = () => setShow(!show)
                     </Text>
                 </Box>
             </Flex>
+
+            {/* Modal if forgot password onclick */}
+            <Modal isCentered isOpen={isOpen} onClose={onClose}>
+                {overlay}
+                <form onSubmit={handleForgotPassword}>
+                    <ModalContent>
+                        <ModalHeader>forgot password</ModalHeader>
+                        <ModalCloseButton/>
+                        <ModalBody>
+                            <Text>Please input your email and check your email box</Text>
+                            <br/>
+                            <Input placeholder="email" type="text" value={email} onChange={(e) => setEmail(e.target.value)}></Input>
+                        </ModalBody>
+                        <ModalFooter>
+                            <Button type="submit" onClick={onClose}>Send</Button>
+                        </ModalFooter>
+                    </ModalContent>
+                </form>
+            </Modal>
             </Box>
         </>
     );

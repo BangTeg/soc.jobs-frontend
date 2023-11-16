@@ -3,6 +3,8 @@ import "../styles/Footer.css";
 import { Link } from "@chakra-ui/react";
 
 const Footer = () => {
+
+    const maps = "https://www.bing.com/search?pglt=41&q=socmedia&cvid=9723155da26c46b9a1bb8f1d18f44448&gs_lcrp=EgZjaHJvbWUqBggAEEUYOzIGCAAQRRg7MgYIARBFGDwyBggCEEUYPDIGCAMQRRg8MgYIBBBFGEDSAQgxMDkxajBqMagCALACAA&FORM=ANNTA1&PC=ACTS";
     return(
         <>
             <footer className="footer"> 
@@ -28,6 +30,7 @@ const Footer = () => {
                                 <heading>Useful Links</heading>
                             </li>
                             <li><Link href="/">Homepage</Link></li>
+                            <li><Link href="/faq">FAQ</Link></li>
                             <li><Link href="/aboutus">About Us</Link></li>
                             <li><Link href="/contactus">Contact Us</Link></li>
                         </ul>
@@ -37,7 +40,7 @@ const Footer = () => {
                             <li>
                                 <heading>Address</heading>
                             </li>
-                            <li>Jl. Mawar Raya No.A42, Baturan, Kec. Colomadu, Kab. Karanganyar, Jawa Tengah 57171<i className="fa"></i></li>
+                            <li><Link href={maps}>Jl. Mawar Raya No.A42, Baturan, Kec. Colomadu, Kab. Karanganyar, Jawa Tengah 57171</Link><i className="fa"></i></li>
                         </ul>
                     </div>
                 </div>

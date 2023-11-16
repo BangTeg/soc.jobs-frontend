@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, Flex, Center, CardBody, Text, CardHeader,
-    Heading, CardFooter, Button, Image, Box, Link } from "@chakra-ui/react";
+    Heading, CardFooter, Button, Image, Box, Link, useToast } from "@chakra-ui/react";
 import Navbar  from "../components/Navbar";
 import Footer  from "../components/Footer";
 import NotFound  from "../auth/NotFound";
@@ -18,15 +18,43 @@ import { useState, useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import  axios  from "axios";
 
 const DashboardUser = () => {
-    // //get accces token
-    // const accessToken = token;
-    // localStorage.setItem("access_token", accessToken);
-    // //Jika akses token tidak tersedia menampilkan komponen not found
-    // if (!accessToken) {
-    //     return <NotFound />
-    // }
+    const [isLogged, setIsLogged] = useState(localStorage.getItem('access_token'));
+    const [cv, setCv] = useState();
+    const [avatar, setAvatar] = useState();
+    const toast = useToast();
+    // console.log(avatar)
+    useEffect(() => {
+        const handleGetProfile = async() => {
+            await axios.get("https://50cglb1j-4000.asse.devtunnels.ms/user/profile", {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+                },
+            })
+            .then((response) => {
+                setCv(response.data.data.cv);
+                setAvatar(response.data.data.avatar);
+                // console.log(response.data.data.cv)
+                if (!response.data.data.cv || !response.data.data.avatar ) {
+                    toast({
+                        title: 'Please Upload Your Cv and Profile',
+                        description: 'Upload Before Apply Jobs.!',
+                        status: "warning",
+                        duration: 4000,
+                        isClosable: true,
+                        position: 'top'
+                    });
+                }
+            })
+            .catch((error) => {
+                return error;
+            })
+        };
+        handleGetProfile();
+    }, []);
+
 
     //slider pcture logo division soc 
     const settings = {

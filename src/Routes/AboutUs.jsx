@@ -13,7 +13,7 @@ const AboutUs = () => {
             <Box className="aboutUs" paddingTop="9%" paddingLeft="10" paddingRight="10">
                 <Flex flexDirection="column" gap="7" justifyContent="space-between">
                     <Box>
-                        <Heading bgGradient="linear(90deg, #169FC2 -8.13%, #8D64BC 43.63%, #EE5471 104.46%)" bgClip="text" size="2xl" fontFamily="poppins , sans-serif">Tentang SOCJobs*</Heading>
+                        <Heading bgGradient="linear(90deg, #169FC2 -15%, #8D64BC 20%, #EE5471 60%)" bgClip="text" size="2xl" fontFamily="poppins , sans-serif" paddingBottom="7px">Tentang SOCJobs*</Heading>
                     </Box>
                     <Box paddingTop="1%">
                         <Text fontFamily="poppins , sans-serif" textColor="#FFFFFF" fontSize="lg">SOC JOBS Merupakan wadah untuk memberikan lowongan pekerjaan yang telah di sediakan oleh SOC Media Agency.</Text>

@@ -13,8 +13,8 @@ const RegisterVerify = () => {
     const [address, setAddress] = useState('');
     const [contact, setContact  ] = useState('');
     const [gender, setGender] = useState('');
-    const [avatar, setAvatar] = useState('');
-    const [cv, setCv] = useState('');
+    const [avatar, setAvatar] = useState();
+    const [cv, setCv] = useState();
 
     const toast = useToast();
     const { token } = useParams();
@@ -73,7 +73,7 @@ const RegisterVerify = () => {
 
     const handleCvChange = (e) => {
         setCv(e.target.files[0]);
-    }
+    };
 
     return (
         <>
@@ -83,7 +83,7 @@ const RegisterVerify = () => {
                     <Img src={logo} alt="SocMedia" width="173px" height="47px" borderRadius="5px"></Img>
                 </Link>    
             </Box>
-            <Center display="flex" flexDirection="row" justifyContent="flex-end" paddingRight="100px" marginTop="-2%">
+            <Center paddingTop={"70px"} display="flex" flexDirection="row" justifyContent="flex-end" paddingRight="100px" marginTop="-2%">
                 <Card bgColor="transparent" align="center" className="registerCard" variant="unstyled" paddingBottom="20px" borderRadius="30px">
                     <CardHeader>
                         <Center>
@@ -101,34 +101,34 @@ const RegisterVerify = () => {
                         <Table spacing={4} variant="unstyled" alignItems="center">
                             <Tr>
                                 <Td>
-                                    <Input value={address} onChange={(e) => setAddress(e.target.value)} placeholder="Address" type="text" textAlign="left" borderRadius="10px" textColor="#D9D9D9" width="284px"></Input>
+                                    <Input isRequired value={address} onChange={(e) => setAddress(e.target.value)} placeholder="Address" type="text" textAlign="left" borderRadius="10px" textColor="#D9D9D9" width="284px"></Input>
                                 </Td>
                             </Tr>
                             <Tr>
                                 <Td>
-                                    <Input value={contact} onChange={(e) => setContact(e.target.value)} placeholder="Phone Number" type="text" textAlign="left" borderRadius="10px" textColor="#D9D9D9" width="284px"></Input>
+                                    <Input isRequired value={contact} onChange={(e) => setContact(e.target.value)} placeholder="Phone Number" type="tel" inputMode="numeric" textAlign="left" borderRadius="10px" textColor="#D9D9D9" width="284px"></Input>
                                 </Td>
                             </Tr>
                             <Tr>
                                 <Td>
-                                    <Select value={gender} onChange={(e) => setGender(e.target.value)} placeholder="Gender" type="text" textColor="#D9D9D9" textAlign="left" borderRadius="10px" width="284px">
+                                    <Select isRequired value={gender} onChange={(e) => setGender(e.target.value)} placeholder="Gender" type="text" textColor="#D9D9D9" textAlign="left" borderRadius="10px" width="284px">
                                         <option>Male</option>
                                         <option>Female</option>
                                     </Select>
                                 </Td>
                             </Tr>
-                            <Tr>
+                            {/* <Tr>
                                 <Td>
-                                    <Text textColor="white" paddingTop="-2">*Profile Image Not Requirements</Text>
-                                    <Input onChange={handleAvatarChange} type="file" accept="image/*" textAlign="left" textColor="#D9D9D9" borderRadius="10px" width="284px" height="40px" paddingTop="1.5"></Input>
+                                    <Text textColor="white" paddingTop="-2">*Profile Image Requirements</Text>
+                                    <Input isRequired onChange={handleAvatarChange} type="file" accept="image/*" textAlign="left" textColor="#D9D9D9" borderRadius="10px" width="284px" height="40px" paddingTop="1.5"></Input>
                                 </Td>
                             </Tr>
                             <Tr>
                                 <Td>
-                                <Text textColor="white" paddingTop="-2">*Cv Not Requirements</Text>
-                                    <Input onChange={handleCvChange} type="file" accept=".pdf" textAlign="left" textColor="#D9D9D9" borderRadius="10px" width="284px" height="40px" paddingTop="1.5"></Input>
+                                <Text textColor="white" paddingTop="-2">*Cv Requirements</Text>
+                                    <Input isRequired onChange={handleCvChange} type="file" accept=".pdf" textAlign="left" textColor="#D9D9D9" borderRadius="10px" width="284px" height="40px" paddingTop="1.5"></Input>
                                 </Td>
-                            </Tr>
+                            </Tr> */}
                             <Box textAlign="center" paddingTop="2">
                                 <Button borderRadius="10px" bgColor="none" type="submit">Complete Your Account</Button>
                             </Box>
