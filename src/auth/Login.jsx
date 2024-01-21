@@ -31,7 +31,7 @@ const Login = () => {
             e.preventDefault();
 
             //proses login ke REstful API
-            const response = await fetch("https://50cglb1j-4000.asse.devtunnels.ms/auth/login", {
+            const response = await fetch("https://7s81h0b9-4000.asse.devtunnels.ms/auth/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -110,7 +110,7 @@ const Login = () => {
         //post data to api and get email
 
         try {
-            await axios.post('https://50cglb1j-4000.asse.devtunnels.ms/auth/reset',{
+            await axios.post('https://7s81h0b9-4000.asse.devtunnels.ms/auth/reset',{
                 email: email,
             });
 
@@ -131,7 +131,7 @@ const Login = () => {
 
     const handleGoogleLogin = () => {
         // Redirect the user to the Google OAuth route on your Node.js backend
-         window.location.href = 'https://50cglb1j-4000.asse.devtunnels.ms/auth/google';
+         window.location.href = 'https://7s81h0b9-4000.asse.devtunnels.ms/auth/google';
 
     };
 
@@ -189,14 +189,14 @@ const Login = () => {
                 </Box>
 
                 <Box padding="4px" paddingRight="125px">
-                    <Text textColor="white" fontSize="lg"> Atau </Text>
+                    <Text textColor="white" fontSize="lg"> /Or </Text>
                 </Box>
 
-                <Box paddingRight="45px">
+                {/* <Box paddingRight="45px">
                     <Button onClick={handleGoogleLogin}>
                         <Img src={google} borderRadius="10px" w="30px" h="30px"></Img> Log In with Google
                     </Button>
-                </Box>
+                </Box> */}
 
                 <Box paddingRight="36px" paddingTop="10px">
                     <Text textColor="#D9D9D9">Don't Have Account ? &nbsp;

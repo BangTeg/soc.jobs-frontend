@@ -63,8 +63,8 @@ const PhotoVidioFT = () => {
 
         if (accessToken) {
         //conditional for get api because the choose option 
-        const apiURL = experience ? `https://50cglb1j-4000.asse.devtunnels.ms/job/filter?jobType=1&position=6&experience=${experience}` :
-                                    `https://50cglb1j-4000.asse.devtunnels.ms/job/filter?jobType=1&position=6`;
+        const apiURL = experience ? `https://7s81h0b9-4000.asse.devtunnels.ms/job/filter?jobType=1&position=6&experience=${experience}` :
+                                    `https://7s81h0b9-4000.asse.devtunnels.ms/job/filter?jobType=1&position=6`;
 
         // menambahkan token ke header dan fetch data
         axios.get(apiURL, {
@@ -98,7 +98,7 @@ const PhotoVidioFT = () => {
 
     //get data user from acces token
     const getDataUser = () => {
-        axios.get(`https://50cglb1j-4000.asse.devtunnels.ms/user/profile`, {
+        axios.get(`https://7s81h0b9-4000.asse.devtunnels.ms/user/profile`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('access_token')}`,
                 },
@@ -116,7 +116,7 @@ const PhotoVidioFT = () => {
     //push data application
     const handleSubmit = () => {
         try {
-            axios.post("https://50cglb1j-4000.asse.devtunnels.ms/application", {
+            axios.post("https://7s81h0b9-4000.asse.devtunnels.ms/application", {
             jobId: job_id,
             userId: id
         }, {

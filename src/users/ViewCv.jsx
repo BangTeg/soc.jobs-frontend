@@ -20,7 +20,7 @@ const ViewCv = () => {
         
         if (isLogged) {
             try{
-                await axios.get("https://50cglb1j-4000.asse.devtunnels.ms/user/cv", {
+                await axios.get("https://7s81h0b9-4000.asse.devtunnels.ms/user/cv", {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('access_token')}`,
                     },

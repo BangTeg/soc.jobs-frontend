@@ -28,7 +28,7 @@ const DashboardUser = () => {
     // console.log(avatar)
     useEffect(() => {
         const handleGetProfile = async() => {
-            await axios.get("https://50cglb1j-4000.asse.devtunnels.ms/user/profile", {
+            await axios.get("https://7s81h0b9-4000.asse.devtunnels.ms/user/profile", {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('access_token')}`,
                 },

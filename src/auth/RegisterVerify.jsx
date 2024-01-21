@@ -45,7 +45,7 @@ const RegisterVerify = () => {
 
         // post data to api 
         try {
-            await axios.post(`https://50cglb1j-4000.asse.devtunnels.ms/auth/verify/${token}`, {
+            await axios.post(`https://7s81h0b9-4000.asse.devtunnels.ms/auth/verify/${token}`, {
                 address: address,
                 contact: contact,
                 gender: gender,

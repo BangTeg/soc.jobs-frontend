@@ -17,17 +17,17 @@ const sideBarMenus = [
 	{
 		path: "/backoffice/waiting-approval",
 		icon: WorkIcon,
-		name: "Antrean Persetujuan",
+		name: "Antrean Ajuan",
 	},
 	{
 		path: "/backoffice/approved",
 		icon: WorkIcon,
-		name: "Mendapat Persetujuan",
+		name: "Ajuan Disetujui",
 	},
 	{
 		path: "/backoffice/rejected",
 		icon: WorkIcon,
-		name: "Tidak Mendapat Persetujuan",
+		name: "Ajuan Ditolak",
 	},
 	{
 		path: "/backoffice/vacancy",
@@ -66,7 +66,7 @@ const Page = () => {
 	return (
 		<Box
 			sx={{
-				width: "500px",
+				width: "400px",
 				backgroundColor: "#272829",
 				minHeight: "100vh",
 				overflow: "hidden",

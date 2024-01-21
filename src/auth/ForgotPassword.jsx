@@ -41,7 +41,7 @@ const ForgotPassword = () => {
 
         // post password to api
         try {
-            await axios.post(`https://50cglb1j-4000.asse.devtunnels.ms/auth/reset/${token}`, {
+            await axios.post(`https://7s81h0b9-4000.asse.devtunnels.ms/auth/reset/${token}`, {
                 password: password,
             });
 

@@ -14,7 +14,7 @@ const HistoryLamaran = () => {
     // get api application 
     const handleApplication = async() => {
         if (isLogged) {
-            await axios.get(`https://50cglb1j-4000.asse.devtunnels.ms/user/applications/token`,{
+            await axios.get(`https://7s81h0b9-4000.asse.devtunnels.ms/user/applications/token`,{
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('access_token')}`,
                 },

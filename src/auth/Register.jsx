@@ -45,7 +45,7 @@ const Register = () => {
 
         //fetch api register, if done navigate to complete verify data 
         try {
-            await axios.post("https://50cglb1j-4000.asse.devtunnels.ms/auth/register",{
+            await axios.post("https://7s81h0b9-4000.asse.devtunnels.ms/auth/register",{
                 name: name,
                 email: email,
                 password: password,

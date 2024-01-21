@@ -30,7 +30,7 @@ const UserProfile = () => {
         //fetching with axios 
         if (isLogged) {
             // console.log(accessToken);
-            axios.get(`https://50cglb1j-4000.asse.devtunnels.ms/user/profile`, {
+            axios.get(`https://7s81h0b9-4000.asse.devtunnels.ms/user/profile`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('access_token')}`,
                 },
@@ -55,7 +55,7 @@ const UserProfile = () => {
     const handleAvatar = async() => {
         
         if (isLogged) {
-            await axios.get("https://50cglb1j-4000.asse.devtunnels.ms/user/avatar", {
+            await axios.get("https://7s81h0b9-4000.asse.devtunnels.ms/user/avatar", {
                 responseType: 'blob', //to set blob response 
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('access_token')}`,
@@ -86,7 +86,7 @@ const UserProfile = () => {
        formData.append('avatar', avatarUpdate);
 
         try {
-            await axios.post("https://50cglb1j-4000.asse.devtunnels.ms/user/avatar",  formData, {
+            await axios.post("https://7s81h0b9-4000.asse.devtunnels.ms/user/avatar",  formData, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('access_token')}`,
             },
@@ -112,7 +112,7 @@ const UserProfile = () => {
         
         if (isLogged) {
             try{
-                await axios.get("https://50cglb1j-4000.asse.devtunnels.ms/user/cv", {
+                await axios.get("https://7s81h0b9-4000.asse.devtunnels.ms/user/cv", {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('access_token')}`,
                     },
@@ -143,7 +143,7 @@ const UserProfile = () => {
        formData.append('cv', cv);
 
         try {
-            await axios.post("https://50cglb1j-4000.asse.devtunnels.ms/user/cv",  formData, {
+            await axios.post("https://7s81h0b9-4000.asse.devtunnels.ms/user/cv",  formData, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('access_token')}`,
             },
@@ -175,7 +175,7 @@ const UserProfile = () => {
         
         //post data to api 
         try {
-            await axios.put(`https://50cglb1j-4000.asse.devtunnels.ms/user/profile/${id}`, updatedData, {
+            await axios.put(`https://7s81h0b9-4000.asse.devtunnels.ms/user/profile/${id}`, updatedData, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('access_token')}`,
                 },
